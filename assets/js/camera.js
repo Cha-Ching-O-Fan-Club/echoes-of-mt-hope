@@ -264,7 +264,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     default: addVotedSticker(event);
                 }
             } else {
-                addVotedSticker(event);
+                // addVotedSticker(event);
             }
         }
     });
