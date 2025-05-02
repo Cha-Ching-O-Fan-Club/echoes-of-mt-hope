@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Mt. Hope Cemetery AR Experience</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover, shrink-to-fit=no"
+    />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+    <!-- External libraries -->
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.loaders.min.js"></script>
+
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Zilla+Slab:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <script src="locations.js"></script>
+    <script src="assets/js/app.js" type="module"></script>
+
+    <script
+      type="text/javascript"
+      async
+      src="https://tenor.com/embed.js"
+    ></script>
+
+    <!-- <link rel="stylesheet" href="style.css" /> -->
+    <style>
+      .fade-out {
+        animation: fadeOut 5s forwards;
+      }
+
+      @keyframes fadeOut {
+        from {
+          opacity: 1;
+        }
+
+        to {
+          opacity: 0;
+        }
+      }
+
+      /* Add styles for 3D object container */
+      #dynamic-objects {
+        position: absolute;
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <!-- Left Tab (Clues) -->
+  <body>
+    <!-- <a-scene
+      embedded
+      arjs="sourceType: webcam; debugUIEnabled: false;"
+      vr-mode-ui="enabled: false"
+      renderer="logarithmicDepthBuffer: true; precision: mediump; colorManagement: true;"
+      style="width: 100%; height: 100%; position: absolute"
+    > -->
+    <!-- Container for dynamically added 3D objects -->
+    <!-- <a-entity id="dynamic-objects"></a-entity> -->
+
+    <!-- Container for dynamically added shapes -->
+    <!-- <a-entity id="dynamic-shapes"></a-entity> -->
+
+    <!-- Container for images -->
+    <!-- <a-entity id="dynamic-images"></a-entity> -->
+
+    <!-- Camera setup -->
+    <!-- <a-entity
+        camera="userHeight: 1.6"
+        arjs-device-orientation-controls
+        smooth="true"
+        smoothCount="10"
+        smoothTolerance="0.01"
+        smoothThreshold="5"
+      ></a-entity>
+    </a-scene> -->
+
+    <!-- <div id="tap-instruction" style="display: none">
+      Tap the screen to place AR objects!
+    </div> -->
+    <!-- Proximity indicator -->
+    <!-- <div id="proximity-indicator" class="proximity-indicator">
+      You're getting close to a clue location!
+    </div> -->
+
+    <!-- Location status indicator -->
+    <!-- <div id="location-status">Acquiring location...</div> -->
+
+    <!-- <div
+      id="celebration-overlay"
+      style="
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1000;
+        pointer-events: none;
+      "
+    >
+      <div
+        class="tenor-gif-embed"
+        data-postid="9112604163635990669"
+        data-share-method="host"
+        data-aspect-ratio="1"
+        data-width="100%"
+      ></div>
+    </div> -->
+
+    <!-- Tab Buttons -->
+    <!-- <button class="tab-button" id="left-tab-button" aria-label="Open clues">
+      <span style="font-size: inherit">☰</span>
+    </button>
+    <button class="tab-button" id="right-tab-button" aria-label="Open help">
+      <span style="font-size: inherit">?</span>
+    </button>
+
+    <button id="check-location-btn" class="location-check-btn">
+      Check My Location
+    </button>
+
+    <button id="test-celebration-btn" class="test-button" style="display: none">
+      Test Celebration
+    </button> -->
+    <!-- <div id="div1"></div> -->
+    <header>
+      <h1>Echoes of Mt Hope</h1>
+    </header>
+    <main>
+      <section id="unfound-sites-section">
+        <header>
+          <h2>Sites Left to Discover</h2>
+        </header>
+        <ul id="unfound-sites-list"></ul>
+      </section>
+      <section id="found-sites-section">
+        <header>
+          <h2>Sites Found</h2>
+        </header>
+        <ul id="found-sites-list">
+          <li class="found-site-icon">
+            <i class="fas fa-drum"></i>
+          </li>
+          <li class="found-site-icon">
+            <i class="fas fa-drum"></i>
+          </li>
+          <li class="found-site-icon">
+            <i class="fas fa-drum"></i>
+          </li>
+          <li class="found-site-icon">
+            <i class="fas fa-drum"></i>
+          </li>
+        </ul>
+      </section>
+    </main>
+    <nav>
+      <ul id="menu">
+        <li class="menu-item selected" id="list-menu-option"><a href="/">List</a></li>
+        <li class="menu-item" id="camera-menu-option">
+          <a href="camera.html"><i class="fas fa-camera"></i></a>
+        </li>
+        <li class="menu-item" id="help-menu-option"><a href="help.html">Help</a></li>
+      </ul>
+    </nav>
+  </body>
+</html>
